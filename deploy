@@ -22,4 +22,4 @@ make deploy version=$webversion namespace=$namespace
 cd ../api
 make build version=$apiversion
 make push version=$apiversion
-make deploy version=$apiversiona namespace=$namespace
+make deploy version=$apiversion namespace=$namespace
