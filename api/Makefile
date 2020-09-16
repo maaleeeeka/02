@@ -1,4 +1,4 @@
-version = marsel-1.1
+version = marsel-1.12
 image = 401413892014.dkr.ecr.us-east-1.amazonaws.com/apiapp:$(version)
 
 login:
