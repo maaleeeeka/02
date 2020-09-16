@@ -1,4 +1,4 @@
-podTemplate(yaml: """
+podTemplate(yaml: “”"
 apiVersion: v1
 kind: Pod
 metadata:
@@ -13,28 +13,28 @@ spec:
     tty: true
     env:
     - name: DOCKER_HOST
-      value: 'tcp://localhost:2375'
+      value: ‘tcp://localhost:2375’
   - name: dind-daemon
-    image: 'docker:18-dind'
+    image: ‘docker:18-dind’
     command:
     - dockerd-entrypoint.sh
     tty: true
     securityContext:
       privileged: true
-"""
+“”"
 ) {
     node(POD_LABEL) {
       properties([
         pipelineTriggers([
-          [$class: 'GitHubPushTrigger'],
-          //pollSCM('*/3 * * * *'), // poll every 3 minutes
+          [$class: ‘GitHubPushTrigger’],
+          //pollSCM(‘*/3 * * * *’), // poll every 3 minutes
           ])
       ])
       checkout scm
-      container('jenkins-slave') {
-        sh '''
+      container(‘jenkins-slave’) {
+        sh ‘’'
         ./deploy
-        '''
+        ‘’'
       }
     }
 }
